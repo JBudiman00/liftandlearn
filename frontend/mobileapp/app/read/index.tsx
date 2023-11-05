@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { View, Text, Pressable, StyleSheet } from "react-native";
 import { getWikiBlocks } from '../../endpoints/backendapi';
 import { AntDesign } from '@expo/vector-icons'; 
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function Page() {
   const [blockArr, setBlockArr] = useState<Array<string>>([]);
@@ -12,6 +12,10 @@ export default function Page() {
   const item = local.subject as string;
 
   useEffect(() => {
+    const test = async () => {
+      console.log(await AsyncStorage.getItem("WPS"));
+    }
+    test();
     //Read in blocks
     // getWikiBlocks(item as string)
     // .then((response) => {
