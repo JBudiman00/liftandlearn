@@ -3,33 +3,34 @@ import { useEffect, useState } from "react";
 import { View, Text, Pressable, StyleSheet } from "react-native";
 import { getWikiBlocks } from '../../endpoints/backendapi';
 import { AntDesign } from '@expo/vector-icons'; 
-import AsyncStorage from '@react-native-async-storage/async-storage';
+// import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function Page() {
-  const [blockArr, setBlockArr] = useState<Array<string>>([]);
+  const [blockArr, setBlockArr] = useState<any>([]);
   const [index, setIndex] = useState<number>(0);
   const local = useLocalSearchParams();
   const item = local.subject as string;
 
   useEffect(() => {
     const test = async () => {
-      console.log(await AsyncStorage.getItem("WPS"));
+      // console.log(await AsyncStorage.getItem("WPS"));
     }
     test();
-    //Read in blocks
-    // getWikiBlocks(item as string)
-    // .then((response) => {
-    //     setBlockArr(response.map((item) => ))
-    // })
-    setBlockArr(['3', '4', '5']); //Testing
+    getWikiBlocks(item as string, "25")
+    .then((response) => {
+      setBlockArr(response.body);
+    })
   }, [])
 
   return (
     <View style={{flex: 1}}>
       <Stack.Screen options={{title: item}}/>
-      <View style={{flex: 1}}>
+      <View style={{flex: 1, padding: 4}}>
         <Text>
-          {blockArr[index]}
+          {blockArr.length !== 0 && 
+            blockArr[index].map((item: any) => 
+            <Text style={{fontSize: 22}}>{item.text}Here</Text>
+          )}
         </Text>
       </View>
         <View style={{position: 'absolute', bottom: 0, backgroundColor: "#272829", width: "100%", height: "15%"}}>

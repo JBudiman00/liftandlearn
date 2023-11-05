@@ -4,7 +4,8 @@ class Paragraph():
         self.header = header
         self.text = text
     def __str__(self):
-        return '{{"section":"{s}","header":"{h}","text":"{t}"}}'.format(s=self.section, h=self.header, t=self.text)
+        # return '{{"section":"{s}","header":"{h}","text":"{t}"}}'.format(s=self.section, h=self.header, t=self.text)
+        return  {{"section":"{s}","header":"{h}","text":"{t}"}}
         
 def getParagraphs(text):
     text.replace("\\n", "")
@@ -51,10 +52,11 @@ def getParagraphs(text):
             inSHP = False
             
             #Append to array here
-            parText = ''.join(currentText)
+            paragraph = ''.join(currentText)
             currentText = []
             
-            pg = Paragraph(section, header, parText)
+            # pg = Paragraph(section, header, parText)
+            pg = {"section": section,"header": header,"text": paragraph}
             parArray.append(pg)
             
         elif text[i] == "<":
@@ -72,13 +74,13 @@ def getBlocks(paragraphs, maxLength):
     blocks = []
     currentBlock = []
     for paragraph in paragraphs:
-        length = len(paragraph.text)
+        length = len(paragraph['text'])
         if currentLength + length <= maxLength:
-            currentBlock.append(paragraph.__str__())
+            currentBlock.append(paragraph)
             currentLength += length
         else:
             if len(currentBlock) == 0:
-                blocks.append([paragraph.__str__()])
+                blocks.append([paragraph])
             else:
                 blocks.append(currentBlock)
             currentLength = 0
