@@ -1,5 +1,4 @@
 from requests import get
-from PyPDF2 import PdfReader
 from .parse import getBlocks, getParagraphs
 
 def getBlockJSON(pageName, block_size):
@@ -10,4 +9,7 @@ def getBlockJSON(pageName, block_size):
         paragraphArray = getParagraphs(text)
         blockArray = getBlocks(paragraphArray, block_size)
         
-        return blockArray
+        #Format Block Array as JSON:
+        json = '{"body":' + str(blockArray) + "}"
+        
+        return json
