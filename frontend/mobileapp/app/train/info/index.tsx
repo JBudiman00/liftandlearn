@@ -17,16 +17,12 @@ export default function Page() {
                 </Text>
                 <View style={{height: "40%", alignItems: 'center'}}>
                     <View style={{flex: 1, justifyContent: "center"}}>
-                        <Link href="/train">
-                            <View style={{width: 100, backgroundColor: "#24A0ED", height: 60, borderRadius: 40}}>
+                        <Link href="/train" asChild>
+                            <Pressable style={{width: 100, backgroundColor: "#24A0ED", height: 60, borderRadius: 40}}>
                                 <View style={{flex: 1, justifyContent: "center", alignItems: "center"}}>
-                                
-                                    <Pressable>
-                                        <Text style={{fontSize: 20, color: "#FFF6E0"}}>Continue</Text>
-                                    </Pressable>
-                                
+                                    <Text style={{fontSize: 20, color: "#FFF6E0"}}>Continue</Text>
                                 </View>
-                            </View>
+                            </Pressable>
                         </Link>
                     </View>
                 </View>

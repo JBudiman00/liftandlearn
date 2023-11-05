@@ -25,7 +25,6 @@ const SearchBar = (props: {setResult: any}) => {
       validateOnChange={false} 
       onSubmit={async (values) => {
         const result = await getConstResults(values.search);
-        console.log(result);
         props.setResult(result);
       }}
     >

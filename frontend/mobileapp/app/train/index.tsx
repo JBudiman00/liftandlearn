@@ -1,7 +1,7 @@
 import { View, Text, Pressable, StyleSheet, ScrollView, Modal } from "react-native";
 import { Stack, Link } from 'expo-router';
 import { useState, useEffect } from 'react';
-// import AsyncStorage from '@react-native-async-storage/async-storage';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function Page() {
   const [startTime, setStartTime] = useState(new Date().getTime());
@@ -65,7 +65,7 @@ export default function Page() {
               onPress={() => {
                 setEndTime(new Date().getTime())
                 setModalVisible(true);
-                // AsyncStorage.setItem("WPS", String((new Date().getTime() - startTime) / 1000));
+                AsyncStorage.setItem("WPS", String((new Date().getTime() - startTime) / 1000));
               }}
               >
               <View style={{flex: 1, alignItems: "center", justifyContent: "center"}}>
