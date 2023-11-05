@@ -7,18 +7,18 @@ export default function Page() {
       <View style={{flex: 1}}>
         <Stack.Screen options={{title: "Home"}}/>
         <View style={styles.container}>
-          <Card name="Search" />
-          <Card name="Train" />
+          <Card name="Search" value="/search" />
+          <Card name="Train" value="/train/info" />
         </View>
       </View>
   );
 }
 
-const Card = (props: {name: string}) => {
+const Card = (props: {name: string, value: string}) => {
   return (
     <View style={styles.card}>
       <View style={{flex: 1, justifyContent: "center"}}>
-        <Link href={"/".concat(props.name.toLowerCase())} asChild>
+        <Link href={props.value} asChild>
           <Pressable>
             <Text style={{color: "#FFF6E0", textAlign: "center", fontSize: 25}}>{props.name}</Text>
           </Pressable>

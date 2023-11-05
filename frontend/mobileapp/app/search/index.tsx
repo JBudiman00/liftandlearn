@@ -1,7 +1,6 @@
 import { Text, View, Pressable, StyleSheet, ScrollView } from 'react-native';
 import { useState } from 'react';
-import { Link } from 'expo-router';
-import { Stack } from 'expo-router';
+import { Link, Stack } from 'expo-router';
 import SearchBar from '../../components/formik';
 
 export default function Page() {
@@ -15,8 +14,8 @@ export default function Page() {
         <ScrollView contentContainerStyle={{alignItems: "center"}}>
           {result.length !== 0 && result[1].length != 0 && result[1].map((item: string) => {
             return (
-              <Link href="/" asChild>
-                <Pressable key={item} style={styles.container}>
+              <Link key={item} href={{pathname: '/read', params: {subject: item}}} asChild>
+                <Pressable style={styles.container}>
                   <View style={{flex: 1, justifyContent: "center"}}>
                     <Text style={{textAlign: "center", fontSize: 20}}>{item}</Text>
                   </View>
